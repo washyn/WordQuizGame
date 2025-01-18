@@ -334,9 +334,17 @@
 
 
 <router-outlet />
-
-<div>
-  <p-button label="Toast sample" (onClick)="show()"></p-button>
+<p-divider></p-divider>
+<div class="">
+<!--  [raised]="true" severity="secondary"-->
+  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
+  <br>
+  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
+  <br>
+  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
+  <br>
+  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
+  <br>
 </div>
 
 <p-toast position="top-center"></p-toast>

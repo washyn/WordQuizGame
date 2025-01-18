@@ -6,27 +6,21 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
-import {PrimeSharedModule} from "./shared/prime-shared.module";
-import {ConfirmationService, MessageService} from "primeng/api";
+import { PrimeSharedModule } from './shared/prime-shared.module';
+import { ConfirmationService, MessageService } from 'primeng/api';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    PrimeSharedModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, PrimeSharedModule],
   providers: [
     MessageService,
     ConfirmationService,
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura
-      }
-    })
+        preset: Aura,
+      },
+    }),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

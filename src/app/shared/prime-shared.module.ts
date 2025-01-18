@@ -20,6 +20,7 @@ import { PasswordModule } from 'primeng/password';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import {NgModule} from "@angular/core";
+import {DividerModule} from "primeng/divider";
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import {NgModule} from "@angular/core";
     PasswordModule,
     TagModule,
     ToastModule,
+    DividerModule,
 
     StyleClassModule,
   ],
@@ -71,6 +73,7 @@ import {NgModule} from "@angular/core";
     PasswordModule,
     TagModule,
     ToastModule,
+    DividerModule,
 
     StyleClassModule,
   ],
