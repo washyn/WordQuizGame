@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'WordQuizGame';
+  constructor(private messageService: MessageService) {}
+
+  show() {
+    this.messageService.add(
+      {
+        severity: 'info', summary: 'Info', detail: 'Message Content', life: 4000});
+  }
 }
