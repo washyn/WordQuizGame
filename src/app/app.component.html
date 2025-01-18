@@ -334,18 +334,49 @@
 
 
 <router-outlet />
-<p-divider></p-divider>
-<div class="">
-<!--  [raised]="true" severity="secondary"-->
-  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
-  <br>
-  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
-  <br>
-  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
-  <br>
-  <p-button label="Toast sample" [raised]="true" severity="secondary" variant="text" (onClick)="show()"></p-button>
-  <br>
-</div>
+
+
+
+
+<p-card>
+  <p-toolbar>
+    <ng-template #start>
+      <p-button label="label" size="small" class="mr-2" text severity="secondary" />
+      <p-button label="label" size="small" class="mr-2" text severity="secondary" />
+      <p-button icon="pi pi-plus" class="mr-2" text severity="secondary" />
+      <p-button icon="pi pi-print" class="mr-2" text severity="secondary" />
+      <p-button icon="pi pi-upload" text severity="secondary" />
+    </ng-template>
+    <ng-template #center>
+      <!--      <p-iconfield iconPosition="left">-->
+      <!--        <p-inputicon styleClass="pi pi-search" />-->
+      <!--        <input type="text" pInputText placeholder="Search" />-->
+      <!--      </p-iconfield>-->
+    </ng-template>
+    <ng-template #end>
+      <!--      <p-splitbutton label="Save" [model]="items" />-->
+    </ng-template>
+  </p-toolbar>
+
+<!--  <p class="m-0">-->
+<!--    Lorem ipsum dolor sit amet...-->
+<!--  </p>-->
+
+<!--  <p-divider></p-divider>-->
+  <div class="">
+    <p-button label="Toast sample" variant="outlined" severity="secondary" size="small" (onClick)="show()"></p-button>
+    <br>
+    <p-button label="Toast sample" variant="outlined" severity="secondary" size="small" (onClick)="show()"></p-button>
+    <br>
+    <p-button label="Toast sample" variant="outlined" severity="secondary" size="small" (onClick)="show()"></p-button>
+    <br>
+    <p-button label="Toast sample" variant="outlined" severity="secondary" size="small" (onClick)="show()"></p-button>
+    <br>
+  </div>
+</p-card>
+
+
+
 
 <p-toast position="top-center"></p-toast>
 <p-confirmDialog

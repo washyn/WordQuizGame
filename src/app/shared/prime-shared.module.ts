@@ -21,6 +21,7 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import {NgModule} from "@angular/core";
 import {DividerModule} from "primeng/divider";
+import {ToolbarModule} from "primeng/toolbar";
 
 @NgModule({
   imports: [
@@ -47,7 +48,7 @@ import {DividerModule} from "primeng/divider";
     TagModule,
     ToastModule,
     DividerModule,
-
+    ToolbarModule,
     StyleClassModule,
   ],
   exports: [
@@ -74,6 +75,7 @@ import {DividerModule} from "primeng/divider";
     TagModule,
     ToastModule,
     DividerModule,
+    ToolbarModule,
 
     StyleClassModule,
   ],
