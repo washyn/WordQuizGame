@@ -17,6 +17,23 @@ interface ElementOption {
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+  restartCurrentLevel() {
+    this.resetCurrentGameState();
+    this.displayAllButtons();
+    this.resortElements();
+  }
+  nextQuestion() {}
+  resetCurrentGameState() {
+    if (this.existsElementClickedLeft()) {
+      let clickedPreviousElement = this.getElementClickedLeft();
+      this.unmarkElement(clickedPreviousElement);
+    }
+    if (this.existsElementClickedRigth()) {
+      let clickedPreviousElement = this.getElementClickedRigth();
+      this.unmarkElement(clickedPreviousElement);
+    }
+  }
+
   clickedElementA(element: ElementOption) {
     let existsClickedElementA = this.existsElementClickedLeft();
     if (existsClickedElementA) {
@@ -113,48 +130,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  existsElementClickedLeft() {
-    let elements = document.getElementsByClassName('leftButton');
-    for (let i = 0; i < elements.length; i++) {
-      let elementButton = <HTMLElement>elements[i];
-      if (this.elementIsClicked(elementButton)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  existsElementClickedRigth() {
-    let elements = document.getElementsByClassName('rightButton');
-    for (let i = 0; i < elements.length; i++) {
-      let elementButton = <HTMLElement>elements[i];
-      if (this.elementIsClicked(elementButton)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  getElementClickedLeft() {
-    let elements = document.getElementsByClassName('leftButton');
-    for (let i = 0; i < elements.length; i++) {
-      let elementButton = <HTMLElement>elements[i];
-      if (this.elementIsClicked(elementButton)) {
-        return elementButton;
-      }
-    }
-    throw new Error('elementButton is null');
-  }
-  getElementClickedRigth() {
-    let elements = document.getElementsByClassName('rightButton');
-    for (let i = 0; i < elements.length; i++) {
-      let elementButton = <HTMLElement>elements[i];
-      if (this.elementIsClicked(elementButton)) {
-        return elementButton;
-      }
-    }
-    throw new Error('elementButton is null');
-  }
   markButtonAsClicked(element: ElementOption) {
     let elementButton = document.getElementById(element.id);
     if (elementButton) {
@@ -236,14 +211,8 @@ export class AppComponent implements OnInit {
   hideElement(element: HTMLElement) {
     element.style.visibility = 'hidden';
   }
-  hideButton(element: ElementOption) {
-    let elementButton = document.getElementById(element.id);
-    if (elementButton) {
-      elementButton.style.visibility = 'hidden';
-    }
-  }
 
-  showAllButtons() {
+  displayAllButtons() {
     let elements = document.getElementsByClassName('leftButton');
     for (let i = 0; i < elements.length; i++) {
       let elementButton = <HTMLElement>elements[i];
@@ -256,17 +225,53 @@ export class AppComponent implements OnInit {
     }
   }
 
-  resetCurrentGame() {
-    this.getElementClicked();
-    this.resortElements();
-  }
-
   resortElements() {
     this.element.elementsA.sort(() => Math.random() - 0.5);
     this.element.elementsB.sort(() => Math.random() - 0.5);
   }
 
-  nextQuestion() {}
+  existsElementClickedLeft() {
+    let elements = document.getElementsByClassName('leftButton');
+    for (let i = 0; i < elements.length; i++) {
+      let elementButton = <HTMLElement>elements[i];
+      if (this.elementIsClicked(elementButton)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  existsElementClickedRigth() {
+    let elements = document.getElementsByClassName('rightButton');
+    for (let i = 0; i < elements.length; i++) {
+      let elementButton = <HTMLElement>elements[i];
+      if (this.elementIsClicked(elementButton)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  getElementClickedLeft() {
+    let elements = document.getElementsByClassName('leftButton');
+    for (let i = 0; i < elements.length; i++) {
+      let elementButton = <HTMLElement>elements[i];
+      if (this.elementIsClicked(elementButton)) {
+        return elementButton;
+      }
+    }
+    throw new Error('elementButton is null');
+  }
+  getElementClickedRigth() {
+    let elements = document.getElementsByClassName('rightButton');
+    for (let i = 0; i < elements.length; i++) {
+      let elementButton = <HTMLElement>elements[i];
+      if (this.elementIsClicked(elementButton)) {
+        return elementButton;
+      }
+    }
+    throw new Error('elementButton is null');
+  }
 
   element: ElementWord = {
     elementsA: [

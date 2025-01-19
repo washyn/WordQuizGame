@@ -43,4 +43,3 @@ import { GameQuestionComponent } from './pages/game-question/game-question.compo
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-//TODO: use app initializer for disable text selection html
