@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { GetDataStrategy } from './shared/get-data-strategy';
 
-interface ElementWord {
+export interface ElementWord {
   elementsA: ElementOption[];
   elementsB: ElementOption[];
 }
-interface ElementOption {
+export interface ElementOption {
   text: string;
-  idAssociated: number;
+  idAssociated: string;
   id: string;
 }
 
@@ -19,6 +20,7 @@ interface ElementOption {
 export class AppComponent implements OnInit {
   constructor(
     private messageService: MessageService,
+    private getDataStrategy: GetDataStrategy,
     private confirmationService: ConfirmationService
   ) {}
   restartCurrentLevel() {
@@ -348,110 +350,13 @@ export class AppComponent implements OnInit {
 
   initializeLevel() {
     this.initializeWordsGame();
-    this.restartCurrentLevel();
   }
 
   initializeWordsGame() {
-    let n = this.gerRandomBetween(2, 10);
-    let counter = 0;
-    let keyValuePairWords = [];
-    while (counter < n) {
-      let randomWord = this.getRandomWord();
-      keyValuePairWords.push({
-        key: randomWord.English,
-        value: randomWord.Spanish,
-      });
-      counter++;
-    }
-
-    this.element.elementsA = [];
-    this.element.elementsB = [];
-    keyValuePairWords.forEach((element, index) => {
-      this.element.elementsA.push({
-        id: this.guidGenerator(),
-        text: element.key,
-        idAssociated: index,
-      });
-      this.element.elementsB.push({
-        id: this.guidGenerator(),
-        text: element.value,
-        idAssociated: index,
-      });
+    this.getDataStrategy.getData().then((data) => {
+      this.element = data;
+      this.restartCurrentLevel();
+      this.resortElements();
     });
-    this.resortElements();
-  }
-
-  gerRandomBetween(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  getRandomWord() {
-    let randomIndex = this.gerRandomBetween(0, this.translations.length - 1);
-    return this.translations[randomIndex];
-  }
-
-  // esta lista obtenerla del backend de una base de datos...
-  translations: { English: string; Spanish: string }[] = [
-    { English: 'Hello', Spanish: 'Hola' },
-    { English: 'Goodbye', Spanish: 'Adiós' },
-    { English: 'Please', Spanish: 'Por favor' },
-    { English: 'Thank you', Spanish: 'Gracias' },
-    { English: 'Yes', Spanish: 'Sí' },
-    { English: 'No', Spanish: 'No' },
-    { English: 'Excuse me', Spanish: 'Perdón' },
-    { English: 'Sorry', Spanish: 'Lo siento' },
-    { English: 'Friend', Spanish: 'Amigo' },
-    { English: 'Family', Spanish: 'Familia' },
-    { English: 'House', Spanish: 'Casa' },
-    { English: 'Car', Spanish: 'Coche' },
-    { English: 'Book', Spanish: 'Libro' },
-    { English: 'School', Spanish: 'Escuela' },
-    { English: 'Teacher', Spanish: 'Maestro' },
-    { English: 'Student', Spanish: 'Estudiante' },
-    { English: 'Water', Spanish: 'Agua' },
-    { English: 'Food', Spanish: 'Comida' },
-    { English: 'Dog', Spanish: 'Perro' },
-    { English: 'Cat', Spanish: 'Gato' },
-    { English: 'Table', Spanish: 'Mesa' },
-    { English: 'Chair', Spanish: 'Silla' },
-    { English: 'Window', Spanish: 'Ventana' },
-    { English: 'Door', Spanish: 'Puerta' },
-    { English: 'Computer', Spanish: 'Computadora' },
-    { English: 'Phone', Spanish: 'Teléfono' },
-    { English: 'Day', Spanish: 'Día' },
-    { English: 'Night', Spanish: 'Noche' },
-    { English: 'Morning', Spanish: 'Mañana' },
-    { English: 'Afternoon', Spanish: 'Tarde' },
-    { English: 'Evening', Spanish: 'Noche' },
-    { English: 'Week', Spanish: 'Semana' },
-    { English: 'Month', Spanish: 'Mes' },
-    { English: 'Year', Spanish: 'Año' },
-    { English: 'Time', Spanish: 'Tiempo' },
-    { English: 'Work', Spanish: 'Trabajo' },
-    { English: 'Love', Spanish: 'Amor' },
-    { English: 'Happiness', Spanish: 'Felicidad' },
-    { English: 'Sadness', Spanish: 'Tristeza' },
-    { English: 'City', Spanish: 'Ciudad' },
-    { English: 'Country', Spanish: 'País' },
-    { English: 'Garden', Spanish: 'Jardín' },
-    { English: 'Flower', Spanish: 'Flor' },
-    { English: 'Tree', Spanish: 'Árbol' },
-    { English: 'Sun', Spanish: 'Sol' },
-    { English: 'Moon', Spanish: 'Luna' },
-    { English: 'Star', Spanish: 'Estrella' },
-    { English: 'Fire', Spanish: 'Fuego' },
-    { English: 'Earth', Spanish: 'Tierra' },
-    { English: 'Sky', Spanish: 'Cielo' },
-    { English: 'Ocean', Spanish: 'Océano' },
-  ];
-  guidGenerator() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-      /[xy]/g,
-      function (c) {
-        var r = (Math.random() * 16) | 0,
-          v = c == 'x' ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-      }
-    );
   }
 }

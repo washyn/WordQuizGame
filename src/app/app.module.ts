@@ -11,6 +11,10 @@ import { HeaderComponent } from './components/header.component';
 import Aura from '@primeng/themes/aura';
 import { GamePairComponent } from './pages/game-pair/game-pair.component';
 import { GameQuestionComponent } from './pages/game-question/game-question.component';
+import {
+  GetDataStrategy,
+  GetLocalDataStrategy,
+} from './shared/get-data-strategy';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { GameQuestionComponent } from './pages/game-question/game-question.compo
     {
       provide: ConfirmationService,
       useClass: ConfirmationService,
+    },
+    {
+      provide: GetDataStrategy,
+      useClass: GetLocalDataStrategy,
     },
     // {
     //   provide: APP_INITIALIZER,
