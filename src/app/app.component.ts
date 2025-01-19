@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 interface ElementWord {
   elementsA: ElementOption[];
@@ -17,12 +17,18 @@ interface ElementOption {
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+  constructor(
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
   restartCurrentLevel() {
     this.resetCurrentGameState();
     this.displayAllButtons();
     this.resortElements();
   }
-  nextQuestion() {}
+  nextQuestion() {
+    this.initializeWordsGame();
+  }
   resetCurrentGameState() {
     if (this.existsElementClickedLeft()) {
       let clickedPreviousElement = this.getElementClickedLeft();
@@ -32,6 +38,60 @@ export class AppComponent implements OnInit {
       let clickedPreviousElement = this.getElementClickedRigth();
       this.unmarkElement(clickedPreviousElement);
     }
+  }
+
+  checkFinishedLevel() {
+    setTimeout(() => {
+      let finished = this.finishedLevel();
+      console.log('Finished: ' + finished);
+      if (finished) {
+        this.confirmationService.confirm({
+          message: 'Are you sure you want to restart the game?',
+          header: 'Confirmation',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.initializeWordsGame();
+          },
+          reject: () => {
+            console.log('Rejected');
+          },
+        });
+      }
+    }, 1000);
+  }
+
+  finishedLevel() {
+    return !this.someElementIsVisible();
+  }
+
+  // displayMessageFinishedLevel() {
+  //   if (this.finishedLevel()) {
+  //     this.messageService.add({
+  //       severity: 'success',
+  //       summary: 'Success',
+  //       detail: 'Finished level',
+  //       life: 4000,
+  //     });
+  //   }
+  // }
+
+  // some element is visible
+  someElementIsVisible() {
+    let elements = document.getElementsByClassName('leftButton');
+    for (let i = 0; i < elements.length; i++) {
+      let elementButton = <HTMLElement>elements[i];
+      if (elementButton.style.visibility !== 'hidden') {
+        return true;
+      }
+    }
+    elements = document.getElementsByClassName('rightButton');
+    for (let i = 0; i < elements.length; i++) {
+      let elementButton = <HTMLElement>elements[i];
+      if (elementButton.style.visibility !== 'hidden') {
+        return true;
+      }
+    }
+    return false;
   }
 
   clickedElementA(element: ElementOption) {
@@ -54,6 +114,7 @@ export class AppComponent implements OnInit {
           this.hideElement(clickedPreviousElementB);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementB);
+          this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedLeft();
           this.unmarkElement(currentElement);
@@ -74,6 +135,7 @@ export class AppComponent implements OnInit {
           this.hideElement(clickedPreviousElementB);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementB);
+          this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedLeft();
           this.unmarkElement(currentElement);
@@ -102,6 +164,7 @@ export class AppComponent implements OnInit {
           this.hideElement(clickedPreviousElementA);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementA);
+          this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedRigth();
           this.unmarkElement(currentElement);
@@ -122,6 +185,7 @@ export class AppComponent implements OnInit {
           this.hideElement(clickedPreviousElementA);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementA);
+          this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedRigth();
           this.unmarkElement(currentElement);
@@ -275,31 +339,118 @@ export class AppComponent implements OnInit {
 
   element: ElementWord = {
     elementsA: [
-      { id: this.guidGenerator(), text: 'Great', idAssociated: 1 },
       { id: this.guidGenerator(), text: 'Good', idAssociated: 2 },
       { id: this.guidGenerator(), text: 'Hard', idAssociated: 3 },
-      { id: this.guidGenerator(), text: 'Do', idAssociated: 4 },
       { id: this.guidGenerator(), text: 'Think', idAssociated: 5 },
       { id: this.guidGenerator(), text: 'Strong', idAssociated: 6 },
-      { id: this.guidGenerator(), text: 'New', idAssociated: 7 },
-      { id: this.guidGenerator(), text: 'Pass', idAssociated: 8 },
-      { id: this.guidGenerator(), text: 'Try', idAssociated: 9 },
-      { id: this.guidGenerator(), text: 'Thing', idAssociated: 10 },
     ],
     elementsB: [
-      { id: this.guidGenerator(), text: 'Genial', idAssociated: 1 },
       { id: this.guidGenerator(), text: 'Bueno', idAssociated: 2 },
       { id: this.guidGenerator(), text: 'Difícil', idAssociated: 3 },
-      { id: this.guidGenerator(), text: 'Hacer', idAssociated: 4 },
       { id: this.guidGenerator(), text: 'Pensar', idAssociated: 5 },
       { id: this.guidGenerator(), text: 'Fuerte', idAssociated: 6 },
-      { id: this.guidGenerator(), text: 'Nuevo', idAssociated: 7 },
-      { id: this.guidGenerator(), text: 'Pasar', idAssociated: 8 },
-      { id: this.guidGenerator(), text: 'Intentar', idAssociated: 9 },
-      { id: this.guidGenerator(), text: 'Cosa', idAssociated: 10 },
     ],
   };
 
+  ngOnInit(): void {
+    this.initializeWordsGame();
+  }
+
+  initializeWordsGame() {
+    this.restartCurrentLevel();
+
+    let n = this.gerRandomBetween(2, 10);
+    let counter = 0;
+    let keyValuePairWords = [];
+    while (counter < n) {
+      let randomWord = this.getRandomWord();
+      keyValuePairWords.push({
+        key: randomWord.English,
+        value: randomWord.Spanish,
+      });
+      counter++;
+    }
+
+    this.element.elementsA = [];
+    this.element.elementsB = [];
+    keyValuePairWords.forEach((element, index) => {
+      this.element.elementsA.push({
+        id: this.guidGenerator(),
+        text: element.key,
+        idAssociated: index,
+      });
+      this.element.elementsB.push({
+        id: this.guidGenerator(),
+        text: element.value,
+        idAssociated: index,
+      });
+    });
+    this.resortElements();
+  }
+
+  gerRandomBetween(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  getRandomWord() {
+    let randomIndex = this.gerRandomBetween(0, this.translations.length - 1);
+    return this.translations[randomIndex];
+  }
+
+  // esta lista obtenerla del backend de una base de datos...
+  translations: { English: string; Spanish: string }[] = [
+    { English: 'Hello', Spanish: 'Hola' },
+    { English: 'Goodbye', Spanish: 'Adiós' },
+    { English: 'Please', Spanish: 'Por favor' },
+    { English: 'Thank you', Spanish: 'Gracias' },
+    { English: 'Yes', Spanish: 'Sí' },
+    { English: 'No', Spanish: 'No' },
+    { English: 'Excuse me', Spanish: 'Perdón' },
+    { English: 'Sorry', Spanish: 'Lo siento' },
+    { English: 'Friend', Spanish: 'Amigo' },
+    { English: 'Family', Spanish: 'Familia' },
+    { English: 'House', Spanish: 'Casa' },
+    { English: 'Car', Spanish: 'Coche' },
+    { English: 'Book', Spanish: 'Libro' },
+    { English: 'School', Spanish: 'Escuela' },
+    { English: 'Teacher', Spanish: 'Maestro' },
+    { English: 'Student', Spanish: 'Estudiante' },
+    { English: 'Water', Spanish: 'Agua' },
+    { English: 'Food', Spanish: 'Comida' },
+    { English: 'Dog', Spanish: 'Perro' },
+    { English: 'Cat', Spanish: 'Gato' },
+    { English: 'Table', Spanish: 'Mesa' },
+    { English: 'Chair', Spanish: 'Silla' },
+    { English: 'Window', Spanish: 'Ventana' },
+    { English: 'Door', Spanish: 'Puerta' },
+    { English: 'Computer', Spanish: 'Computadora' },
+    { English: 'Phone', Spanish: 'Teléfono' },
+    { English: 'Day', Spanish: 'Día' },
+    { English: 'Night', Spanish: 'Noche' },
+    { English: 'Morning', Spanish: 'Mañana' },
+    { English: 'Afternoon', Spanish: 'Tarde' },
+    { English: 'Evening', Spanish: 'Noche' },
+    { English: 'Week', Spanish: 'Semana' },
+    { English: 'Month', Spanish: 'Mes' },
+    { English: 'Year', Spanish: 'Año' },
+    { English: 'Time', Spanish: 'Tiempo' },
+    { English: 'Work', Spanish: 'Trabajo' },
+    { English: 'Love', Spanish: 'Amor' },
+    { English: 'Happiness', Spanish: 'Felicidad' },
+    { English: 'Sadness', Spanish: 'Tristeza' },
+    { English: 'City', Spanish: 'Ciudad' },
+    { English: 'Country', Spanish: 'País' },
+    { English: 'Garden', Spanish: 'Jardín' },
+    { English: 'Flower', Spanish: 'Flor' },
+    { English: 'Tree', Spanish: 'Árbol' },
+    { English: 'Sun', Spanish: 'Sol' },
+    { English: 'Moon', Spanish: 'Luna' },
+    { English: 'Star', Spanish: 'Estrella' },
+    { English: 'Fire', Spanish: 'Fuego' },
+    { English: 'Earth', Spanish: 'Tierra' },
+    { English: 'Sky', Spanish: 'Cielo' },
+    { English: 'Ocean', Spanish: 'Océano' },
+  ];
   guidGenerator() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
       /[xy]/g,
@@ -309,9 +460,5 @@ export class AppComponent implements OnInit {
         return v.toString(16);
       }
     );
-  }
-
-  ngOnInit(): void {
-    this.resortElements();
   }
 }
