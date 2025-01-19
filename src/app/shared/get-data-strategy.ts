@@ -6,7 +6,8 @@ export interface DataStructure {
   spanish: string;
   english: string;
 }
-
+// Cada juego terminado deberia guardarse en la base de datos, para tener registro y estadistica...
+// cuantos aciertos y errores...
 export interface IGetDataStrategy {
   getData(): Promise<ElementWord>;
 }
@@ -41,7 +42,7 @@ export class GetLocalDataStrategy implements IGetDataStrategy {
   }
 
   genData() {
-    let nWords = this.gerRandomBetween(2, 10);
+    let nWords = this.gerRandomBetween(10, 10);
     let counter = 0;
     let data: [string, string, string][] = [];
     while (data.length <= nWords) {
