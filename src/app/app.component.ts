@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     this.resortElements();
   }
   nextQuestion() {
-    this.initializeWordsGame();
+    this.initializeLevel();
   }
   resetCurrentGameState() {
     if (this.existsElementClickedLeft()) {
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
           header: 'Confirmation',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
-            this.initializeWordsGame();
+            this.initializeLevel();
           },
           reject: () => {
             console.log('Rejected');
@@ -338,27 +338,20 @@ export class AppComponent implements OnInit {
   }
 
   element: ElementWord = {
-    elementsA: [
-      { id: this.guidGenerator(), text: 'Good', idAssociated: 2 },
-      { id: this.guidGenerator(), text: 'Hard', idAssociated: 3 },
-      { id: this.guidGenerator(), text: 'Think', idAssociated: 5 },
-      { id: this.guidGenerator(), text: 'Strong', idAssociated: 6 },
-    ],
-    elementsB: [
-      { id: this.guidGenerator(), text: 'Bueno', idAssociated: 2 },
-      { id: this.guidGenerator(), text: 'Difícil', idAssociated: 3 },
-      { id: this.guidGenerator(), text: 'Pensar', idAssociated: 5 },
-      { id: this.guidGenerator(), text: 'Fuerte', idAssociated: 6 },
-    ],
+    elementsA: [],
+    elementsB: [],
   };
 
   ngOnInit(): void {
+    this.initializeLevel();
+  }
+
+  initializeLevel() {
     this.initializeWordsGame();
+    this.restartCurrentLevel();
   }
 
   initializeWordsGame() {
-    this.restartCurrentLevel();
-
     let n = this.gerRandomBetween(2, 10);
     let counter = 0;
     let keyValuePairWords = [];
