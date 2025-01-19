@@ -19,9 +19,11 @@ import { RouterModule } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
-import {NgModule} from "@angular/core";
-import {DividerModule} from "primeng/divider";
-import {ToolbarModule} from "primeng/toolbar";
+import { NgModule } from '@angular/core';
+import { DividerModule } from 'primeng/divider';
+import { ToolbarModule } from 'primeng/toolbar';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @NgModule({
   imports: [
@@ -50,6 +52,8 @@ import {ToolbarModule} from "primeng/toolbar";
     DividerModule,
     ToolbarModule,
     StyleClassModule,
+    IconFieldModule,
+    InputIconModule,
   ],
   exports: [
     CommonModule,
@@ -76,8 +80,9 @@ import {ToolbarModule} from "primeng/toolbar";
     ToastModule,
     DividerModule,
     ToolbarModule,
-
     StyleClassModule,
+    IconFieldModule,
+    InputIconModule,
   ],
 })
-export class PrimeSharedModule{}
+export class PrimeSharedModule {}
