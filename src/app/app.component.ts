@@ -121,7 +121,10 @@ export class AppComponent implements OnInit {
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedLeft();
-          this.unmarkElement(currentElement);
+          this.markAsWrongSelectedElement(currentElement);
+          setTimeout(() => {
+            this.unmarkElement(currentElement);
+          }, 400);
         }
       }
     } else {
@@ -142,7 +145,10 @@ export class AppComponent implements OnInit {
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedLeft();
-          this.unmarkElement(currentElement);
+          this.markAsWrongSelectedElement(currentElement);
+          setTimeout(() => {
+            this.unmarkElement(currentElement);
+          }, 400);
         }
       }
     }
@@ -171,7 +177,10 @@ export class AppComponent implements OnInit {
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedRigth();
-          this.unmarkElement(currentElement);
+          this.markAsWrongSelectedElement(currentElement);
+          setTimeout(() => {
+            this.unmarkElement(currentElement);
+          }, 400);
         }
       }
     } else {
@@ -192,7 +201,10 @@ export class AppComponent implements OnInit {
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedRigth();
-          this.unmarkElement(currentElement);
+          this.markAsWrongSelectedElement(currentElement);
+          setTimeout(() => {
+            this.unmarkElement(currentElement);
+          }, 400);
         }
       }
     }
@@ -209,8 +221,20 @@ export class AppComponent implements OnInit {
 
   unmarkElement(element: HTMLElement) {
     element.classList.remove('p-button-primary');
+    element.classList.remove('p-button-danger');
     element.classList.add('p-button-secondary');
     element.removeAttribute('isClicked');
+  }
+
+  markAsWrongSelectedElement(element: HTMLElement) {
+    element.classList.remove('p-button-primary');
+    element.classList.remove('p-button-secondary');
+    element.classList.add('p-button-danger');
+  }
+  unmarkAsWrongSelectedElement(element: HTMLElement) {
+    element.classList.remove('p-button-primary');
+    element.classList.remove('p-button-danger');
+    element.classList.add('p-button-secondary');
   }
 
   unmarkClickedButton(element: ElementOption) {
