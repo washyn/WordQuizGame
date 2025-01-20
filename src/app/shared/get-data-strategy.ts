@@ -41,10 +41,10 @@ export class GetLocalDataStrategy implements IGetDataStrategy {
   }
 
   genData() {
-    let nWords = this.gerRandomBetween(2, 10);
+    let nWords = this.gerRandomBetween(2, 4);
     let counter = 0;
     let data: [string, string, string][] = [];
-    while (data.length <= nWords) {
+    while (data.length < nWords) {
       let randomWord = this.getRandomWord();
       if (!data.some((element) => element[0] === randomWord[0])) {
         data.push(randomWord);

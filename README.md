@@ -1,6 +1,9 @@
 ### TODO:
 
 - Can be add sqlite database, and add levels.
+- Add spa.
+- Add stadistics.
+- Add more words.
 
 # WordQuizGame
 

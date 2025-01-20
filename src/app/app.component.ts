@@ -51,6 +51,8 @@ export class AppComponent implements OnInit {
           message: 'Are you sure you want to restart the game?',
           header: 'Confirmation',
           icon: 'pi pi-exclamation-triangle',
+          acceptLabel: 'Yes',
+          rejectLabel: 'No',
           accept: () => {
             this.initializeLevel();
           },
