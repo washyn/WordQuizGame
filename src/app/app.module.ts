@@ -9,6 +9,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header.component';
 import Aura from '@primeng/themes/aura';
+import Material from '@primeng/themes/material';
+import Lara from '@primeng/themes/lara';
+import Nora from '@primeng/themes/nora';
 import { GamePairComponent } from './pages/game-pair/game-pair.component';
 import { GameQuestionComponent } from './pages/game-question/game-question.component';
 import { GetDataStrategy, CommonWords1 } from './shared/get-data-strategy-1';
@@ -26,7 +29,7 @@ import { CommonWords2 } from './shared/get-data-strategy-2';
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: Material,
       },
     }),
     {

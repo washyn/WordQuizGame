@@ -1,5 +1,6 @@
 import { ElementWord } from '../app.component';
 import { commonWords1 } from './common-words-1';
+import { gerRandomBetween, guidGenerator } from './utils';
 
 export interface DataStructure {
   id: string;
@@ -29,12 +30,12 @@ export class CommonWords1 implements IGetDataStrategy {
     // map
     tempData.forEach((element) => {
       resultData.elementsA.push({
-        id: this.guidGenerator(),
+        id: guidGenerator(),
         text: element[1],
         idAssociated: element[0],
       });
       resultData.elementsB.push({
-        id: this.guidGenerator(),
+        id: guidGenerator(),
         text: element[2],
         idAssociated: element[0],
       });
@@ -44,7 +45,7 @@ export class CommonWords1 implements IGetDataStrategy {
   }
 
   genData() {
-    let nWords = this.gerRandomBetween(2, 4);
+    let nWords = gerRandomBetween(2, 4);
     let counter = 0;
     let data: [string, string, string][] = [];
     while (data.length < nWords) {
@@ -57,23 +58,8 @@ export class CommonWords1 implements IGetDataStrategy {
     return data;
   }
 
-  gerRandomBetween(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
   getRandomWord() {
-    let randomIndex = this.gerRandomBetween(0, commonWords1.length - 1);
+    let randomIndex = gerRandomBetween(0, commonWords1.length - 1);
     return commonWords1[randomIndex];
-  }
-
-  guidGenerator() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-      /[xy]/g,
-      function (c) {
-        var r = (Math.random() * 16) | 0,
-          v = c == 'x' ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-      }
-    );
   }
 }
