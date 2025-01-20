@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { GetDataStrategy } from './shared/get-data-strategy-1';
+import { GetDataStrategy } from './shared/interfaces';
 
 export interface ElementWord {
   elementsA: ElementOption[];
@@ -381,7 +381,7 @@ export class AppComponent implements OnInit {
   }
 
   initializeWordsGame() {
-    this.getDataStrategy.getData().then((data) => {
+    this.getDataStrategy.getData().subscribe((data) => {
       this.element = data;
       this.restartCurrentLevel();
       this.resortElements();

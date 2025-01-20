@@ -14,8 +14,9 @@ import Lara from '@primeng/themes/lara';
 import Nora from '@primeng/themes/nora';
 import { GamePairComponent } from './pages/game-pair/game-pair.component';
 import { GameQuestionComponent } from './pages/game-question/game-question.component';
-import { GetDataStrategy, CommonWords1 } from './shared/get-data-strategy-1';
-import { CommonWords2 } from './shared/get-data-strategy-2';
+import { GetDataStrategy } from './shared/interfaces';
+import { LocalCSVStrategy } from './shared/local-csv-strategy';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,9 @@ import { CommonWords2 } from './shared/get-data-strategy-2';
     },
     {
       provide: GetDataStrategy,
-      useClass: CommonWords2,
+      useClass: LocalCSVStrategy,
     },
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })
