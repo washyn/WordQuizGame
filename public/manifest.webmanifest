@@ -1,6 +1,6 @@
 {
-  "name": "Billing",
-  "short_name": "Billing",
+  "name": "QuizGame",
+  "short_name": "QuizGame",
   "icons": [
     {
       "src": "/android-chrome-256x256.png",
