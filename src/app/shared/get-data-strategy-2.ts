@@ -3,6 +3,7 @@ import { commonWords2 } from './common-words-2';
 import { IGetDataStrategy } from './get-data-strategy-1';
 
 export class CommonWords2 implements IGetDataStrategy {
+  strategyName: string = 'Common words 2';
   getData(): Promise<ElementWord> {
     let resultData: ElementWord = {
       elementsA: [],

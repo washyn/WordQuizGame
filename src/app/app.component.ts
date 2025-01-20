@@ -18,6 +18,8 @@ export interface ElementOption {
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+  titleGame: string = 'Word Quiz Game';
+
   constructor(
     private messageService: MessageService,
     private getDataStrategy: GetDataStrategy,
@@ -383,6 +385,7 @@ export class AppComponent implements OnInit {
       this.element = data;
       this.restartCurrentLevel();
       this.resortElements();
+      this.titleGame = this.getDataStrategy.strategyName ?? 'Word Quiz Game';
     });
   }
 }

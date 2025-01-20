@@ -8,14 +8,17 @@ export interface DataStructure {
 }
 
 export interface IGetDataStrategy {
+  strategyName: string;
   getData(): Promise<ElementWord>;
 }
 
 export abstract class GetDataStrategy implements IGetDataStrategy {
+  strategyName!: string;
   abstract getData(): Promise<ElementWord>;
 }
 
 export class CommonWords1 implements IGetDataStrategy {
+  strategyName: string = 'Common words 1';
   getData(): Promise<ElementWord> {
     let resultData: ElementWord = {
       elementsA: [],
