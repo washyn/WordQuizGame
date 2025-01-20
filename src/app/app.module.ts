@@ -11,10 +11,8 @@ import { HeaderComponent } from './components/header.component';
 import Aura from '@primeng/themes/aura';
 import { GamePairComponent } from './pages/game-pair/game-pair.component';
 import { GameQuestionComponent } from './pages/game-question/game-question.component';
-import {
-  GetDataStrategy,
-  GetLocalDataStrategy,
-} from './shared/get-data-strategy';
+import { GetDataStrategy, CommonWords1 } from './shared/get-data-strategy-1';
+import { CommonWords2 } from './shared/get-data-strategy-2';
 
 @NgModule({
   declarations: [
@@ -41,12 +39,8 @@ import {
     },
     {
       provide: GetDataStrategy,
-      useClass: GetLocalDataStrategy,
+      useClass: CommonWords2,
     },
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: ,
-    // }
   ],
   bootstrap: [AppComponent],
 })

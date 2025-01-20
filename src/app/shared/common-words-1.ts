@@ -1,4 +1,4 @@
-export const data: [string, string, string][] = [
+export const commonWords1: [string, string, string][] = [
   ['1', 'the', 'los'],
   ['2', 'be', 'ser'],
   ['3', 'and', 'y'],

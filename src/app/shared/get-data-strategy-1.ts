@@ -1,5 +1,5 @@
 import { ElementWord } from '../app.component';
-import { data } from './data';
+import { commonWords1 } from './common-words-1';
 
 export interface DataStructure {
   id: string;
@@ -15,7 +15,7 @@ export abstract class GetDataStrategy implements IGetDataStrategy {
   abstract getData(): Promise<ElementWord>;
 }
 
-export class GetLocalDataStrategy implements IGetDataStrategy {
+export class CommonWords1 implements IGetDataStrategy {
   getData(): Promise<ElementWord> {
     let resultData: ElementWord = {
       elementsA: [],
@@ -59,8 +59,8 @@ export class GetLocalDataStrategy implements IGetDataStrategy {
   }
 
   getRandomWord() {
-    let randomIndex = this.gerRandomBetween(0, data.length - 1);
-    return data[randomIndex];
+    let randomIndex = this.gerRandomBetween(0, commonWords1.length - 1);
+    return commonWords1[randomIndex];
   }
 
   guidGenerator() {

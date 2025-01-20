@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { GetDataStrategy } from './shared/get-data-strategy';
+import { GetDataStrategy } from './shared/get-data-strategy-1';
 
 export interface ElementWord {
   elementsA: ElementOption[];
@@ -124,7 +124,7 @@ export class AppComponent implements OnInit {
           this.markAsWrongSelectedElement(currentElement);
           setTimeout(() => {
             this.unmarkElement(currentElement);
-          }, 400);
+          }, 200);
         }
       }
     } else {
@@ -148,7 +148,7 @@ export class AppComponent implements OnInit {
           this.markAsWrongSelectedElement(currentElement);
           setTimeout(() => {
             this.unmarkElement(currentElement);
-          }, 400);
+          }, 200);
         }
       }
     }
@@ -180,7 +180,7 @@ export class AppComponent implements OnInit {
           this.markAsWrongSelectedElement(currentElement);
           setTimeout(() => {
             this.unmarkElement(currentElement);
-          }, 400);
+          }, 200);
         }
       }
     } else {
@@ -204,7 +204,7 @@ export class AppComponent implements OnInit {
           this.markAsWrongSelectedElement(currentElement);
           setTimeout(() => {
             this.unmarkElement(currentElement);
-          }, 400);
+          }, 200);
         }
       }
     }
