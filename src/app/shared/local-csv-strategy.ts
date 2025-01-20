@@ -2,21 +2,17 @@ import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ElementWord } from '../app.component';
-import { IGetDataStrategy } from './interfaces';
+import { ElementWord, IGetDataStrategy } from './interfaces';
 import { gerRandomBetween, guidGenerator } from './utils';
 
 export class LocalCSVStrategy implements IGetDataStrategy {
-  strategyName: string =
-    'English new words learned - Palabras más escritas en inglés.csv';
-
   private httpClient = inject(HttpClient);
   words: [string, string, string][] = [];
 
   // esto solo deberia devolver la data y otro metodo hacer el slice.
-  getData(): Observable<ElementWord> {
+  getData(fileName: string): Observable<ElementWord> {
     let tempResponse = this.httpClient
-      .get('/English new words learned - Palabras más escritas en inglés.csv', {
+      .get('/' + fileName, {
         responseType: 'text',
       })
       .pipe(

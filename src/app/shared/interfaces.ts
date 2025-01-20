@@ -1,6 +1,4 @@
 import { Observable, of } from 'rxjs';
-import { ElementWord } from '../app.component';
-import { gerRandomBetween, guidGenerator } from './utils';
 
 export interface DataStructure {
   id: string;
@@ -9,11 +7,18 @@ export interface DataStructure {
 }
 
 export interface IGetDataStrategy {
-  strategyName: string;
-  getData(): Observable<ElementWord>;
+  getData(fileName: string): Observable<ElementWord>;
 }
 
 export abstract class GetDataStrategy implements IGetDataStrategy {
-  strategyName!: string;
-  abstract getData(): Observable<ElementWord>;
+  abstract getData(fileName: string): Observable<ElementWord>;
+}
+export interface ElementWord {
+  elementsA: ElementOption[];
+  elementsB: ElementOption[];
+}
+export interface ElementOption {
+  text: string;
+  idAssociated: string;
+  id: string;
 }

@@ -17,6 +17,8 @@ import { GameQuestionComponent } from './pages/game-question/game-question.compo
 import { GetDataStrategy } from './shared/interfaces';
 import { LocalCSVStrategy } from './shared/local-csv-strategy';
 import { provideHttpClient } from '@angular/common/http';
+import { AppMenuComponent } from './app-menu.component';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { provideHttpClient } from '@angular/common/http';
     HeaderComponent,
     GamePairComponent,
     GameQuestionComponent,
+    AppMenuComponent,
   ],
   imports: [BrowserModule, CommonModule, AppRoutingModule, PrimeSharedModule],
   providers: [
@@ -46,6 +49,7 @@ import { provideHttpClient } from '@angular/common/http';
       useClass: LocalCSVStrategy,
     },
     provideHttpClient(),
+    provideRouter([], withComponentInputBinding()),
   ],
   bootstrap: [AppComponent],
 })
