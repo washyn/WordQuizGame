@@ -1,24 +1,81 @@
-﻿<h1 id="tableLabel">Weather forecast</h1>
+﻿<div class="layout-wrapper layout-static p-4">
+  <p-card>
+    <!-- resetCurrentGame  -->
 
-<p>This component demonstrates fetching data from the server.</p>
+    <!-- <p-button
+      (onClick)="showAllButtons()"
+      label="Show"
+      class="mr-1"
+      severity="warn"
+      size="small"
+    ></p-button> -->
+    <div class="flex justify-between gap-2">
+      <p-button
+        (onClick)="restartCurrentLevel()"
+        label="Restart"
+        icon="pi pi-replay"
+        class="mr-1"
+        severity="danger"
+        size="small"
+      ></p-button>
+      <p-button
+        (onClick)="resetCurrentGameState()"
+        label="Reset state"
+        icon="pi pi-refresh"
+        class="mr-1"
+        severity="warn"
+        size="small"
+      ></p-button>
+      <p-button
+        (onClick)="nextQuestion()"
+        label="Next"
+        icon="pi pi-arrow-right"
+        size="small"
+      ></p-button>
+    </div>
+    <p-divider></p-divider>
+    <div class="text-center">
+      <div class="mx-auto font-medium text-4xl mb-4 text-gray-700">
+        {{ "Quiz game" }}
+      </div>
+    </div>
+    <p-divider></p-divider>
+    <div class="grid grid-cols-2 gap-2">
+      <div class="flex flex-col gap-2">
+        <button
+          [attr.id]="item.id"
+          [attr.associated]="item.idAssociated"
+          *ngFor="let item of element.elementsA"
+          pButton
+          (click)="clickedElementA(item)"
+          class="w-full p-ripple p-button p-component p-button-secondary leftButton"
+          type="button"
+        >
+          <span class="p-button-label">{{ item.text }}</span>
+        </button>
+      </div>
+      <div class="flex flex-col gap-2">
+        <button
+          [attr.id]="item.id"
+          [attr.associated]="item.idAssociated"
+          *ngFor="let item of element.elementsB"
+          pButton
+          (click)="clickedElementB(item)"
+          class="w-full p-ripple p-button p-component p-button-secondary rightButton"
+          type="button"
+        >
+          <span class="p-button-label">{{ item.text }}</span>
+        </button>
+      </div>
+    </div>
 
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+    <!-- <p-button label="Sample" (onClick)="tempCall()"></p-button> -->
+  </p-card>
+</div>
 
-<table *ngIf="forecasts">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.date }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
-        </tr>
-    </tbody>
-</table>
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog
+  [style]="{ width: '30rem' }"
+  [position]="'center'"
+></p-confirmDialog>
+<router-outlet />
