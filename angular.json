@@ -32,8 +32,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              "src/assets"
+              }
             ],
             "styles": ["src/styles.scss"],
             "scripts": []
@@ -86,8 +85,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              "src/assets"
+              }
             ],
             "styles": ["src/styles.scss"],
             "scripts": []
