@@ -1,3 +1,4 @@
+import { Injector } from '@angular/core';
 import { ElementWord } from '../app.component';
 import { commonWords2 } from './common-words-2';
 import { IGetDataStrategy } from './get-data-strategy-1';
@@ -29,7 +30,7 @@ export class CommonWords2 implements IGetDataStrategy {
   }
 
   genData() {
-    let nWords = this.gerRandomBetween(2, 4);
+    let nWords = this.gerRandomBetween(4, 5);
     let counter = 0;
     let data: [string, string, string][] = [];
     while (data.length < nWords) {
