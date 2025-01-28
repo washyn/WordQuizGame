@@ -44,10 +44,6 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
       provide: ConfirmationService,
       useClass: ConfirmationService,
     },
-    {
-      provide: GetDataStrategy,
-      useClass: LocalCSVStrategy,
-    },
     provideHttpClient(),
     provideRouter([], withComponentInputBinding()),
   ],

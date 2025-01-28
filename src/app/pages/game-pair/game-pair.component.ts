@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import {
   ElementOption,
   ElementWord,
   GetDataStrategy,
 } from '../../shared/interfaces';
+import { LOAD_DATA_STRATEGY } from '../../shared/load-data-strategy';
 
 @Component({
   selector: 'app-game-pair',
@@ -14,9 +15,12 @@ import {
 export class GamePairComponent implements OnInit {
   titleGame: string = 'Word Quiz Game';
   @Input() option!: string;
+
+  private loadDataStrategy!: GetDataStrategy;
+
   constructor(
+    protected injector: Injector,
     private messageService: MessageService,
-    private getDataStrategy: GetDataStrategy,
     private confirmationService: ConfirmationService
   ) {}
   restartCurrentLevel() {
@@ -63,17 +67,6 @@ export class GamePairComponent implements OnInit {
   finishedLevel() {
     return !this.someElementIsVisible();
   }
-
-  // displayMessageFinishedLevel() {
-  //   if (this.finishedLevel()) {
-  //     this.messageService.add({
-  //       severity: 'success',
-  //       summary: 'Success',
-  //       detail: 'Finished level',
-  //       life: 4000,
-  //     });
-  //   }
-  // }
 
   // some element is visible
   someElementIsVisible() {
@@ -375,7 +368,13 @@ export class GamePairComponent implements OnInit {
   }
 
   initializeWordsGame() {
-    this.getDataStrategy.getData(this.option).subscribe((data) => {
+    if (this.option && this.option.length && this.option !== '') {
+      this.loadDataStrategy = LOAD_DATA_STRATEGY.File(this.injector);
+    } else {
+      this.loadDataStrategy = LOAD_DATA_STRATEGY.LocalStorage(this.injector);
+    }
+
+    this.loadDataStrategy.getData(this.option).subscribe((data) => {
       this.element = data;
       this.restartCurrentLevel();
       this.resortElements();
