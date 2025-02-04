@@ -14,7 +14,9 @@ import { DataProvider } from '../../shared/data-provider';
 })
 export class GamePairComponent implements OnInit {
   titleGame: string = 'Word Quiz Game';
-  @Input() option!: string;
+  wrongAnswerCount: number = 0;
+  rightAnswerCount: number = 0;
+  totalQuestions: number = 0;
 
   constructor(
     protected injector: Injector,
@@ -45,7 +47,7 @@ export class GamePairComponent implements OnInit {
     setTimeout(() => {
       let finished = this.finishedLevel();
       console.log('Finished: ' + finished);
-      if (finished) {
+      if (finished || this.totalQuestions === this.rightAnswerCount) {
         this.confirmationService.confirm({
           message: 'Are you sure you want to restart the game?',
           header: 'Confirmation',
@@ -106,10 +108,12 @@ export class GamePairComponent implements OnInit {
           this.hideElement(clickedPreviousElementB);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementB);
+          this.rightAnswerCount++;
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedLeft();
           this.markAsWrongSelectedElement(currentElement);
+          this.wrongAnswerCount++;
           setTimeout(() => {
             this.unmarkElement(currentElement);
           }, 200);
@@ -130,10 +134,12 @@ export class GamePairComponent implements OnInit {
           this.hideElement(clickedPreviousElementB);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementB);
+          this.rightAnswerCount++;
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedLeft();
           this.markAsWrongSelectedElement(currentElement);
+          this.wrongAnswerCount++;
           setTimeout(() => {
             this.unmarkElement(currentElement);
           }, 200);
@@ -162,10 +168,12 @@ export class GamePairComponent implements OnInit {
           this.hideElement(clickedPreviousElementA);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementA);
+          this.rightAnswerCount++;
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedRigth();
           this.markAsWrongSelectedElement(currentElement);
+          this.wrongAnswerCount++;
           setTimeout(() => {
             this.unmarkElement(currentElement);
           }, 200);
@@ -186,10 +194,12 @@ export class GamePairComponent implements OnInit {
           this.hideElement(clickedPreviousElementA);
           this.unmarkElement(currentElement);
           this.unmarkElement(clickedPreviousElementA);
+          this.rightAnswerCount++;
           this.checkFinishedLevel();
         } else {
           let currentElement = this.getElementClickedRigth();
           this.markAsWrongSelectedElement(currentElement);
+          this.wrongAnswerCount++;
           setTimeout(() => {
             this.unmarkElement(currentElement);
           }, 200);
@@ -371,6 +381,9 @@ export class GamePairComponent implements OnInit {
       this.element = data;
       this.restartCurrentLevel();
       this.resortElements();
+      this.totalQuestions = this.element.elementsA.length;
+      this.wrongAnswerCount = 0;
+      this.rightAnswerCount = 0;
     });
   }
 }

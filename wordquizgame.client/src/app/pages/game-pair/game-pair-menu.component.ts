@@ -11,9 +11,10 @@ import { FileSelectEvent, FileUploadEvent } from 'primeng/fileupload';
       <p-button
         class="flex flex-col gap-2"
         label="Back to main menu"
-        [raised]="true"
         severity="secondary"
         routerLink="/"
+        size="small"
+        icon="pi pi-arrow-left"
       />
     </div>
     <p-divider></p-divider>
