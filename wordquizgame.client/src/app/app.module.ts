@@ -18,6 +18,7 @@ import { GetDataStrategy } from './shared/interfaces';
 import { provideHttpClient } from '@angular/common/http';
 import { AppMenuComponent } from './app-menu.component';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { GamePairMenuComponent } from './pages/game-pair/game-pair-menu.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
     GamePairComponent,
     GameQuestionComponent,
     AppMenuComponent,
+    GamePairMenuComponent,
   ],
   imports: [BrowserModule, CommonModule, AppRoutingModule, PrimeSharedModule],
   providers: [

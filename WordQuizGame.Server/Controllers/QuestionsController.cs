@@ -31,7 +31,6 @@ namespace WordQuizGame.Server.Controllers
         public SampleLog(ILogger<SampleLog> logger)
         {
             _logger = logger;
-            _logger = logger;
         }
         public void Get()
         {
