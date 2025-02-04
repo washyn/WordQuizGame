@@ -83,7 +83,7 @@ export class GamePairComponent implements OnInit {
     }
     return false;
   }
-
+  // NOTE: improve this function
   clickedElementA(element: ElementOption) {
     let existsClickedElementA = this.existsElementClickedLeft();
     if (existsClickedElementA) {
@@ -149,7 +149,7 @@ export class GamePairComponent implements OnInit {
       }
     }
   }
-
+  // NOTE: improve this function
   clickedElementB(element: ElementOption) {
     let existsClickedElementB = this.existsElementClickedRigth();
     if (existsClickedElementB) {

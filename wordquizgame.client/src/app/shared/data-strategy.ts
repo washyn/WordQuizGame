@@ -2,7 +2,7 @@ import { Observable, of } from 'rxjs';
 import { ElementWord, GetDataStrategy, IGetDataStrategy } from './interfaces';
 import { Injector } from '@angular/core';
 import { mapData, mapDataAndPeek, parseCSV } from './utils';
-// TODO: fix  file loader...
+
 // export const LOAD_DATA_STRATEGY = {
 //   LocalStorage(injector: Injector) {
 //     return new LocalStorageStrategy(injector);
