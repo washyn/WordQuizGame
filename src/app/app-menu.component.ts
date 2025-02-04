@@ -1,10 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { FileSelectEvent, FileUploadEvent } from 'primeng/fileupload';
-
-// routerLink="/backoffice/lot-result"
-// [queryParams]="{ lotId: lot.id }"
 
 @Component({
   selector: 'app-menu',
@@ -21,8 +19,7 @@ import { FileSelectEvent, FileUploadEvent } from 'primeng/fileupload';
         [label]="item.label"
         [raised]="true"
         severity="secondary"
-        routerLink="/game-pair"
-        [queryParams]="{ option: item.label }"
+        (onClick)="selectedButton($event, item.label)"
       />
     </div>
     <p-divider></p-divider>
@@ -40,7 +37,27 @@ import { FileSelectEvent, FileUploadEvent } from 'primeng/fileupload';
     </div> `,
 })
 export class AppMenuComponent implements OnInit {
-  constructor(private messageService: MessageService, private router: Router) {}
+  selectedButton($event: any, itemLabelFileName: string) {
+    let tempResponse = this.httpClient
+      .get('/' + itemLabelFileName, {
+        responseType: 'text',
+      })
+      .subscribe((data: string) => {
+        localStorage.setItem('csvData', JSON.stringify({ data: data }));
+        this.router.navigate(['/game-pair']);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'File selected',
+          detail: itemLabelFileName,
+        });
+      });
+  }
+
+  constructor(
+    private messageService: MessageService,
+    private router: Router,
+    private httpClient: HttpClient
+  ) {}
 
   onSelectFile(event: FileSelectEvent) {
     if (event.files.length > 0) {
@@ -79,10 +96,6 @@ export class AppMenuComponent implements OnInit {
       value: '1',
     },
   ];
-
-  onClick(value: { label: string; value: string }) {
-    console.log('Clicked: ' + value);
-  }
 
   ngOnInit(): void {}
 }

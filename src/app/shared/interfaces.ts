@@ -9,11 +9,11 @@ export interface DataStructure {
 }
 
 export interface IGetDataStrategy {
-  getData(fileName: string): Observable<ElementWord>;
+  getData(): Observable<ElementWord>;
 }
 
 export abstract class GetDataStrategy implements IGetDataStrategy {
-  abstract getData(fileName: string): Observable<ElementWord>;
+  abstract getData(): Observable<ElementWord>;
   protected httpClient: HttpClient;
   constructor(protected injector: Injector) {
     this.httpClient = injector.get(HttpClient);

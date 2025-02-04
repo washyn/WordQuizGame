@@ -5,7 +5,7 @@ import {
   ElementWord,
   GetDataStrategy,
 } from '../../shared/interfaces';
-import { LOAD_DATA_STRATEGY } from '../../shared/load-data-strategy';
+import { DataProvider } from '../../shared/data-provider';
 
 @Component({
   selector: 'app-game-pair',
@@ -16,11 +16,10 @@ export class GamePairComponent implements OnInit {
   titleGame: string = 'Word Quiz Game';
   @Input() option!: string;
 
-  private loadDataStrategy!: GetDataStrategy;
-
   constructor(
     protected injector: Injector,
     private messageService: MessageService,
+    private dataProvider: DataProvider,
     private confirmationService: ConfirmationService
   ) {}
   restartCurrentLevel() {
@@ -368,17 +367,10 @@ export class GamePairComponent implements OnInit {
   }
 
   initializeWordsGame() {
-    if (this.option && this.option.length && this.option !== '') {
-      this.loadDataStrategy = LOAD_DATA_STRATEGY.File(this.injector);
-    } else {
-      this.loadDataStrategy = LOAD_DATA_STRATEGY.LocalStorage(this.injector);
-    }
-
-    this.loadDataStrategy.getData(this.option).subscribe((data) => {
+    this.dataProvider.getData().subscribe((data) => {
       this.element = data;
       this.restartCurrentLevel();
       this.resortElements();
-      this.titleGame = this.option ?? 'Word Quiz Game';
     });
   }
 }

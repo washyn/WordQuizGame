@@ -1,11 +1,15 @@
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ElementWord, GetDataStrategy, IGetDataStrategy } from './interfaces';
-import { Injector } from '@angular/core';
+import { ElementWord } from './interfaces';
 import { mapData, mapDataAndPeek, parseCSV } from './utils';
 
-// TODO: this method shoud not be receive fileName
-export class LocalStorageStrategy extends GetDataStrategy {
-  getData(fileName: string): Observable<ElementWord> {
+@Injectable({
+  providedIn: 'root',
+})
+export class DataProvider {
+  constructor() {}
+
+  getData(): Observable<ElementWord> {
     let data = localStorage.getItem('csvData');
     if (data) {
       let stringContent = JSON.parse(data).data as string;

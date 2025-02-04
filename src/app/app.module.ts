@@ -15,7 +15,6 @@ import Nora from '@primeng/themes/nora';
 import { GamePairComponent } from './pages/game-pair/game-pair.component';
 import { GameQuestionComponent } from './pages/game-question/game-question.component';
 import { GetDataStrategy } from './shared/interfaces';
-import { LocalCSVStrategy } from './shared/local-csv-strategy';
 import { provideHttpClient } from '@angular/common/http';
 import { AppMenuComponent } from './app-menu.component';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
