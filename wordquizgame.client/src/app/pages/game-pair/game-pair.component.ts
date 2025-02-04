@@ -2,6 +2,8 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ElementOption, ElementWord } from '../../shared/interfaces';
 import { DataProvider } from '../../shared/data-provider';
+import { ClockService } from '../../shared/clock.service';
+import { StopwatchService } from '../../shared/stopwatch.service';
 
 @Component({
   selector: 'app-game-pair',
@@ -13,14 +15,19 @@ export class GamePairComponent implements OnInit {
   wrongAnswerCount: number = 0;
   rightAnswerCount: number = 0;
   totalQuestions: number = 0;
+  touchCounter = 0;
+  time$ = this.stopwatchService.time$;
 
-  // TODO: agregar mensaje de nivel terminado con el numero de aciertos y errores
   constructor(
     protected injector: Injector,
     private messageService: MessageService,
     private dataProvider: DataProvider,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private stopwatchService: StopwatchService
   ) {}
+
+  startTimer() {}
+
   restartCurrentLevel() {
     this.resetCurrentGameState();
     this.displayAllButtons();
@@ -54,7 +61,7 @@ export class GamePairComponent implements OnInit {
             size: 'small',
           },
           acceptButtonProps: {
-            label: 'Save',
+            label: 'Next',
             icon: 'pi pi-check',
             size: 'small',
           },
@@ -93,6 +100,7 @@ export class GamePairComponent implements OnInit {
   }
   // NOTE: improve this function
   clickedElementA(element: ElementOption) {
+    this.touchCounter++;
     let existsClickedElementA = this.existsElementClickedLeft();
     if (existsClickedElementA) {
       let clickedPreviousElement = this.getElementClickedLeft();
@@ -159,6 +167,7 @@ export class GamePairComponent implements OnInit {
   }
   // NOTE: improve this function
   clickedElementB(element: ElementOption) {
+    this.touchCounter++;
     let existsClickedElementB = this.existsElementClickedRigth();
     if (existsClickedElementB) {
       let clickedPreviousElement = this.getElementClickedRigth();
