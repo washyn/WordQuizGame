@@ -12,6 +12,8 @@ export function gerRandomBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// TODO: add another secure random number generator
+
 export function mapData(data: [string, string, string][]) {
   let resultData: ElementWord = {
     elementsA: [],

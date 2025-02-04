@@ -1,10 +1,6 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import {
-  ElementOption,
-  ElementWord,
-  GetDataStrategy,
-} from '../../shared/interfaces';
+import { ElementOption, ElementWord } from '../../shared/interfaces';
 import { DataProvider } from '../../shared/data-provider';
 
 @Component({
@@ -18,6 +14,7 @@ export class GamePairComponent implements OnInit {
   rightAnswerCount: number = 0;
   totalQuestions: number = 0;
 
+  // TODO: agregar mensaje de nivel terminado con el numero de aciertos y errores
   constructor(
     protected injector: Injector,
     private messageService: MessageService,
@@ -46,7 +43,6 @@ export class GamePairComponent implements OnInit {
   checkFinishedLevel() {
     setTimeout(() => {
       let finished = this.finishedLevel();
-      console.log('Finished: ' + finished);
       if (finished || this.totalQuestions === this.rightAnswerCount) {
         this.confirmationService.confirm({
           message: 'Are you sure you want to restart the game?',
@@ -62,7 +58,7 @@ export class GamePairComponent implements OnInit {
           },
         });
       }
-    }, 1000);
+    }, 400);
   }
 
   finishedLevel() {
@@ -104,12 +100,15 @@ export class GamePairComponent implements OnInit {
           element.idAssociated.toString()
         ) {
           let currentElement = this.getElementClickedLeft();
-          this.hideElement(currentElement);
-          this.hideElement(clickedPreviousElementB);
-          this.unmarkElement(currentElement);
-          this.unmarkElement(clickedPreviousElementB);
-          this.rightAnswerCount++;
-          this.checkFinishedLevel();
+          this.markElementSuccess(currentElement);
+          setTimeout(() => {
+            this.hideElement(currentElement);
+            this.hideElement(clickedPreviousElementB);
+            this.unmarkElement(currentElement);
+            this.unmarkElement(clickedPreviousElementB);
+            this.rightAnswerCount++;
+            this.checkFinishedLevel();
+          }, 200);
         } else {
           let currentElement = this.getElementClickedLeft();
           this.markAsWrongSelectedElement(currentElement);
@@ -130,12 +129,15 @@ export class GamePairComponent implements OnInit {
           element.idAssociated.toString()
         ) {
           let currentElement = this.getElementClickedLeft();
-          this.hideElement(currentElement);
-          this.hideElement(clickedPreviousElementB);
-          this.unmarkElement(currentElement);
-          this.unmarkElement(clickedPreviousElementB);
-          this.rightAnswerCount++;
-          this.checkFinishedLevel();
+          this.markElementSuccess(currentElement);
+          setTimeout(() => {
+            this.hideElement(currentElement);
+            this.hideElement(clickedPreviousElementB);
+            this.unmarkElement(currentElement);
+            this.unmarkElement(clickedPreviousElementB);
+            this.rightAnswerCount++;
+            this.checkFinishedLevel();
+          }, 200);
         } else {
           let currentElement = this.getElementClickedLeft();
           this.markAsWrongSelectedElement(currentElement);
@@ -164,12 +166,15 @@ export class GamePairComponent implements OnInit {
           element.idAssociated.toString()
         ) {
           let currentElement = this.getElementClickedRigth();
-          this.hideElement(currentElement);
-          this.hideElement(clickedPreviousElementA);
-          this.unmarkElement(currentElement);
-          this.unmarkElement(clickedPreviousElementA);
-          this.rightAnswerCount++;
-          this.checkFinishedLevel();
+          this.markElementSuccess(currentElement);
+          setTimeout(() => {
+            this.hideElement(currentElement);
+            this.hideElement(clickedPreviousElementA);
+            this.unmarkElement(currentElement);
+            this.unmarkElement(clickedPreviousElementA);
+            this.rightAnswerCount++;
+            this.checkFinishedLevel();
+          }, 200);
         } else {
           let currentElement = this.getElementClickedRigth();
           this.markAsWrongSelectedElement(currentElement);
@@ -190,12 +195,15 @@ export class GamePairComponent implements OnInit {
           element.idAssociated.toString()
         ) {
           let currentElement = this.getElementClickedRigth();
-          this.hideElement(currentElement);
-          this.hideElement(clickedPreviousElementA);
-          this.unmarkElement(currentElement);
-          this.unmarkElement(clickedPreviousElementA);
-          this.rightAnswerCount++;
-          this.checkFinishedLevel();
+          this.markElementSuccess(currentElement);
+          setTimeout(() => {
+            this.hideElement(currentElement);
+            this.hideElement(clickedPreviousElementA);
+            this.unmarkElement(currentElement);
+            this.unmarkElement(clickedPreviousElementA);
+            this.rightAnswerCount++;
+            this.checkFinishedLevel();
+          }, 200);
         } else {
           let currentElement = this.getElementClickedRigth();
           this.markAsWrongSelectedElement(currentElement);
@@ -206,6 +214,32 @@ export class GamePairComponent implements OnInit {
         }
       }
     }
+  }
+
+  markButtonAsSuccess(element: ElementOption) {
+    let elementButton = document.getElementById(element.id);
+    if (elementButton) {
+      elementButton.classList.remove('p-button-secondary');
+      elementButton.classList.remove('p-button-danger');
+      elementButton.classList.add('p-button-primary');
+    }
+  }
+  unMarkButtonAsSuccess(element: ElementOption) {
+    let elementButton = document.getElementById(element.id);
+    if (elementButton) {
+      elementButton.classList.remove('p-button-primary');
+      elementButton.classList.add('p-button-secondary');
+    }
+  }
+
+  markElementSuccess(element: HTMLElement) {
+    element.classList.remove('p-button-secondary');
+    element.classList.remove('p-button-danger');
+    element.classList.add('p-button-primary');
+  }
+  unMarkElementSuccess(element: HTMLElement) {
+    element.classList.remove('p-button-primary');
+    element.classList.add('p-button-secondary');
   }
 
   markButtonAsClicked(element: ElementOption) {
