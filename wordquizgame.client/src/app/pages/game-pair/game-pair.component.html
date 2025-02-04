@@ -30,9 +30,9 @@
 <p-divider></p-divider>
 
 <div class="flex justify-between gap-2">
-  <div class="font-medium text-2xl text-red-600">{{ wrongAnswerCount }}</div>
-  <div class="font-medium text-2xl text-blue-600">{{ totalQuestions }}</div>
-  <div class="font-medium text-2xl text-green-600">{{ rightAnswerCount }}</div>
+  <div class="font-medium text-2xl text-red-400">{{ wrongAnswerCount }}</div>
+  <div class="font-medium text-2xl text-blue-400">{{ totalQuestions }}</div>
+  <div class="font-medium text-2xl text-green-400">{{ rightAnswerCount }}</div>
 </div>
 
 <p-divider type="dotted"></p-divider>
@@ -70,3 +70,24 @@
     </button>
   </div>
 </div>
+<p-confirmdialog>
+  <ng-template #message let-message>
+    <div class="flex flex-col items-center w-full gap-4">
+      <i [ngClass]="message.icon" class="!text-6xl text-primary-500"></i>
+      <p>Summary of the level finished:</p>
+      <ul>
+        <li class="font-medium text-2xl text-green-400">
+          - {{ this.rightAnswerCount }} : right answers
+        </li>
+        <li class="font-medium text-2xl text-red-400">
+          - {{ this.wrongAnswerCount }} : wrong answers
+        </li>
+        <li class="font-medium text-2xl text-blue-400">
+          - {{ this.totalQuestions }} : questions
+        </li>
+      </ul>
+      <p>Are you sure you want to restart the game?</p>
+      <p-divider></p-divider>
+    </div>
+  </ng-template>
+</p-confirmdialog>

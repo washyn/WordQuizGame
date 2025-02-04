@@ -45,11 +45,19 @@ export class GamePairComponent implements OnInit {
       let finished = this.finishedLevel();
       if (finished || this.totalQuestions === this.rightAnswerCount) {
         this.confirmationService.confirm({
-          message: 'Are you sure you want to restart the game?',
           header: 'Confirmation',
-          icon: 'pi pi-exclamation-triangle',
-          acceptLabel: 'Yes',
-          rejectLabel: 'No',
+          icon: 'pi pi-exclamation-circle',
+          rejectButtonProps: {
+            label: 'Cancel',
+            icon: 'pi pi-times',
+            outlined: true,
+            size: 'small',
+          },
+          acceptButtonProps: {
+            label: 'Save',
+            icon: 'pi pi-check',
+            size: 'small',
+          },
           accept: () => {
             this.initializeLevel();
           },
