@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "wordquizgame.client": {
+    "WordQuizGame": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/wordquizgame.client",
+            "outputPath": "dist/word-quiz-game",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -43,7 +43,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "2MB"
+                  "maximumError": "3MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -65,16 +65,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "wordquizgame.client:build:production"
+              "buildTarget": "WordQuizGame:build:production"
             },
             "development": {
-              "buildTarget": "wordquizgame.client:build:development"
+              "buildTarget": "WordQuizGame:build:development"
             }
           },
-          "defaultConfiguration": "development",
-          "options": {
-            "proxyConfig": "src/proxy.conf.js"
-          }
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
@@ -91,8 +88,7 @@
               }
             ],
             "styles": ["src/styles.scss"],
-            "scripts": [],
-            "karmaConfig": "karma.conf.js"
+            "scripts": []
           }
         }
       }

@@ -4,22 +4,35 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
+import { PrimeSharedModule } from './shared/prime-shared.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/header.component';
 import Aura from '@primeng/themes/aura';
-import {GetDataStrategy, GetLocalDataStrategy} from "./shared/get-data-strategy";
-import {PrimeSharedModule} from "./shared/prime-shared.module";
+import Material from '@primeng/themes/material';
+import Lara from '@primeng/themes/lara';
+import Nora from '@primeng/themes/nora';
+import { GamePairComponent } from './pages/game-pair/game-pair.component';
+import { GameQuestionComponent } from './pages/game-question/game-question.component';
+import { GetDataStrategy } from './shared/interfaces';
+import { provideHttpClient } from '@angular/common/http';
+import { AppMenuComponent } from './app-menu.component';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    GamePairComponent,
+    GameQuestionComponent,
+    AppMenuComponent,
   ],
   imports: [BrowserModule, CommonModule, AppRoutingModule, PrimeSharedModule],
   providers: [
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: Material,
       },
     }),
     {
@@ -30,10 +43,8 @@ import {PrimeSharedModule} from "./shared/prime-shared.module";
       provide: ConfirmationService,
       useClass: ConfirmationService,
     },
-    {
-      provide: GetDataStrategy,
-      useClass: GetLocalDataStrategy,
-    },
+    provideHttpClient(),
+    provideRouter([], withComponentInputBinding()),
   ],
   bootstrap: [AppComponent],
 })

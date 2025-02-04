@@ -1,23 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>WordquizgameClient</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<style>
-  body {
-    user-select: none;
-    -drag: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-  }
-</style>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>WordQuizGame</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <script>
+      // if ("serviceWorker" in navigator) {
+      //   window.addEventListener("load", function () {
+      //     navigator.serviceWorker
+      //       .register("/service-worker.js")
+      //       .then((registration) => {
+      //         console.log("Service Worker registrado con éxito:", registration);
+      //       })
+      //       .catch((error) => {
+      //         console.error("Error al registrar el Service Worker:", error);
+      //       });
+      //   });
+      // }
+    </script>
+  </head>
+  <style>
+    body {
+      user-select: none;
+      -drag: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+  </style>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>

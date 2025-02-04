@@ -1,4 +1,11 @@
-# WordquizgameClient
+### TODO:
+
+- Can be add sqlite database, and add levels.
+- Add spa.
+- Add stadistics.
+- Add more words.
+
+# WordQuizGame
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
 
