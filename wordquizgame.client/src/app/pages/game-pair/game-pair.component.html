@@ -81,6 +81,7 @@
   <ng-template #message let-message>
     <div class="flex flex-col items-center w-full gap-4">
       <i [ngClass]="message.icon" class="!text-6xl text-primary-500"></i>
+      <p>Total time: {{ this.timeSolvedGame }}</p>
       <p>Summary of the level finished:</p>
       <ul>
         <li class="font-medium text-2xl text-green-400">

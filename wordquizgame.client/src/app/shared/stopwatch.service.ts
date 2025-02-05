@@ -51,4 +51,8 @@ export class StopwatchService {
   private pad(value: number): string {
     return value.toString().padStart(2, '0');
   }
+
+  getCurrentTime(): string {
+    return this.formatTime(this.timeSubject.getValue());
+  }
 }

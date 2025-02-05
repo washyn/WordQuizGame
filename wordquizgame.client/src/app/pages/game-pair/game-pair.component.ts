@@ -1,22 +1,25 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ElementOption, ElementWord } from '../../shared/interfaces';
 import { DataProvider } from '../../shared/data-provider';
 import { ClockService } from '../../shared/clock.service';
 import { StopwatchService } from '../../shared/stopwatch.service';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-game-pair',
   templateUrl: './game-pair.component.html',
   styleUrls: ['./game-pair.component.css'],
 })
-export class GamePairComponent implements OnInit {
+export class GamePairComponent implements OnInit, OnDestroy {
   titleGame: string = 'Word Quiz Game';
   wrongAnswerCount: number = 0;
   rightAnswerCount: number = 0;
   totalQuestions: number = 0;
-  touchCounter = 0;
+  timeSolvedGame: string = '00:00:00';
   time$ = this.stopwatchService.time$;
+  private counterSubject = new BehaviorSubject<number>(0);
+  public touchCounter$: Observable<number> = this.counterSubject.asObservable();
 
   constructor(
     protected injector: Injector,
@@ -25,8 +28,9 @@ export class GamePairComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private stopwatchService: StopwatchService
   ) {}
-
-  startTimer() {}
+  ngOnDestroy(): void {
+    this.stopwatchService.reset();
+  }
 
   restartCurrentLevel() {
     this.resetCurrentGameState();
@@ -51,6 +55,7 @@ export class GamePairComponent implements OnInit {
     setTimeout(() => {
       let finished = this.finishedLevel();
       if (finished || this.totalQuestions === this.rightAnswerCount) {
+        this.timeSolvedGame = this.stopwatchService.getCurrentTime();
         this.confirmationService.confirm({
           header: 'Confirmation',
           icon: 'pi pi-exclamation-circle',
@@ -100,7 +105,7 @@ export class GamePairComponent implements OnInit {
   }
   // NOTE: improve this function
   clickedElementA(element: ElementOption) {
-    this.touchCounter++;
+    this.counterSubject.next(this.counterSubject.value + 1);
     let existsClickedElementA = this.existsElementClickedLeft();
     if (existsClickedElementA) {
       let clickedPreviousElement = this.getElementClickedLeft();
@@ -167,7 +172,7 @@ export class GamePairComponent implements OnInit {
   }
   // NOTE: improve this function
   clickedElementB(element: ElementOption) {
-    this.touchCounter++;
+    this.counterSubject.next(this.counterSubject.value + 1);
     let existsClickedElementB = this.existsElementClickedRigth();
     if (existsClickedElementB) {
       let clickedPreviousElement = this.getElementClickedRigth();
@@ -421,6 +426,11 @@ export class GamePairComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeLevel();
+    this.touchCounter$.subscribe((value) => {
+      if (value === 1) {
+        this.stopwatchService.start();
+      }
+    });
   }
 
   initializeLevel() {
@@ -435,6 +445,8 @@ export class GamePairComponent implements OnInit {
       this.totalQuestions = this.element.elementsA.length;
       this.wrongAnswerCount = 0;
       this.rightAnswerCount = 0;
+      this.counterSubject.next(0);
+      this.stopwatchService.reset();
     });
   }
 }
