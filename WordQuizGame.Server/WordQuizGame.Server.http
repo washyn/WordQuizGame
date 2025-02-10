@@ -1,4 +1,4 @@
-@WordQuizGame.Server_HostAddress = http://localhost:5037
+@WordQuizGame.Server_HostAddress = http://localhost:5155
 
 GET {{WordQuizGame.Server_HostAddress}}/weatherforecast/
 Accept: application/json
