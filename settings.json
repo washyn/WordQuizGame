@@ -1,0 +1,386 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "update.mode": "manual",
+    "update.enableWindowsBackgroundUpdates": false,
+    "extensions.autoUpdate": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.fontLigatures": true,
+    "git.autofetch": true,
+    "security.workspace.trust.enabled": true,
+    "editor.fontFamily": "JetBrains Mono",
+    "[cs]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "editor.wordWrapColumn": 120,
+    },
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features",
+        "editor.wordWrapColumn": 120
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        // "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.wordWrapColumn": 120
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.wordWrapColumn": 120
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.wordWrapColumn": 120
+        // OLD vscode.json-language-features
+    }, // Light
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.suggestSelection": "first",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "editor.cursorWidth": 5,
+    "mssql.connections": [
+        {
+            "server": "(LocalDb)\\MSSQLLocalDB",
+            "database": "",
+            "authenticationType": "Integrated",
+            "profileName": "local",
+            "password": ""
+        },
+        {
+            "server": ".",
+            "database": "",
+            "authenticationType": "SqlLogin",
+            "user": "sa",
+            "password": "",
+            "emptyPasswordInput": false,
+            "savePassword": true,
+            "profileName": "localhost"
+        },
+        {
+            "server": "(localdb)\\MSSQLLocalDB2022",
+            "database": "",
+            "authenticationType": "Integrated",
+            "password": ""
+        },
+        {
+            "server": "(LocalDb)\\MSSQLLocalDB",
+            "database": "master",
+            "authenticationType": "Integrated",
+            "profileName": "(LocalDb)\\MSSQLLocalDB",
+            "password": ""
+        },
+        {
+            "server": "localhost",
+            "database": "master",
+            "authenticationType": "Integrated",
+            "profileName": "localhost_db",
+            "encrypt": "Mandatory",
+            "trustServerCertificate": true,
+            "password": ""
+        }
+    ],
+    "[aspnetcorerazor]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+    // "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    // "editor.fontFamily": "'JetBrains Mono',Consolas, 'Courier New', monospace",
+    // "editor.fontFamily": "'Fira Code',Consolas, 'Courier New', monospace",
+    // "telemetry.enableTelemetry": false,
+    // "csharp.format.enable": true, // CHECK HOW TO WORK this
+    "prettier.arrowParens": "avoid",
+    "prettier.trailingComma": "none",
+    "prettier.singleQuote": true,
+    "prettier.printWidth": 120,
+    // "prettier.bracketSpacing": true,
+    // // "prettier.embeddedLanguageFormatting": "auto",
+    // "prettier.htmlWhitespaceSensitivity": "css",
+    // "prettier.insertPragma": false,
+    // "prettier.jsxBracketSameLine": false,
+    // "prettier.jsxSingleQuote": false,
+    // "prettier.proseWrap": "preserve",
+    // "prettier.quoteProps": "as-needed",
+    // "prettier.requirePragma": false,
+    // "prettier.semi": true,
+    // "prettier.tabWidth": 4,
+    // "prettier.useTabs": false,
+    // "prettier.vueIndentScriptAndStyle": false,
+    // "prettier.jsonEnable": [
+    //     "json"
+    // ],
+    // "prettier.cssEnable": [
+    //     "css",
+    //     "less",
+    //     "scss",
+    //     "postcss"
+    // ],
+
+    "omnisharp.autoStart": true,
+    "explorer.confirmDelete": false,
+    "editor.wordWrap": "on",
+    "files.associations": {
+        "*.razor": "razor"
+    },
+    "git.suggestSmartCommit": false,
+    
+    "liveshare.authenticationProvider": "GitHub",
+    "liveshare.presence": true,
+    "redhat.telemetry.enabled": false,
+    "xml.symbols.maxItemsComputed": 50000,
+    "thunder-client.codeSnippetLanguage": "cs-httpclient",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "hediet.vscode-drawio.resizeImages": null,
+    "jetbrainsKeymap.promptV3Features": false,
+    "gitlens.graph.experimental.minimap.enabled": true,
+    "console-ninja.featureSet": "Community",
+    "dart.flutterSdkPath": "C:\\Users\\user\\programs\\flutter",
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "security.workspace.trust.banner": "always",
+    "editor.accessibilitySupport": "off",
+    "security.workspace.trust.untrustedFiles": "open",
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
+    },
+    "emmet.includeLanguages": {
+        "aspnetcorerazor": "html"
+    },
+    // for compile sass
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": null,
+            "savePathReplacementPairs": null,
+        }
+    ],
+    ///////////////////////////////////////////////////
+    // Set the default
+    "editor.formatOnSave": true,
+    "workbench.colorCustomizations": {
+        // "editorRuler.foreground": "#313131",
+        "editorLineNumber.foreground": "#7a7a7a"
+    },
+    "git.confirmSync": false,
+    // resaltado de tags
+    "highlight-matching-tag.styles": {
+        "opening": {
+            "name": {
+                "underline": "white",
+                "surround": "red",
+                "highlight": "blue"
+            },
+            "full": {
+                "custom": {
+                    "dark": {
+                        "borderWidth": "0 0 1px 0",
+                        "borderColor": "white",
+                        "borderStyle": "solid",
+                        "borderRadius": "0px",
+                        "overviewRulerColor": "white",
+                    }
+                },
+            }
+        },
+        "closing": {
+            "name": {
+                "underline": "white",
+                "surround": "red",
+                "highlight": "blue"
+            },
+            "full": {
+                "custom": {
+                    "dark": {
+                        "borderWidth": "0 0 1px 0",
+                        "borderColor": "white",
+                        "borderStyle": "solid",
+                        "borderRadius": "0px",
+                        "overviewRulerColor": "white",
+                    }
+                },
+            }
+        }
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        // "editor.wordWrap": "wordWrapColumn",
+        // "editor.wordWrapColumn": 120
+    },
+    "gitlens.advanced.messages": {
+        "suppressGitVersionWarning": true
+    },
+    "javascript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "javascript.inlayHints.parameterNames.enabled": "all",
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "dotnet.inlayHints.enableInlayHintsForParameters": true,
+    "dotnet.inlayHints.enableInlayHintsForLiteralParameters": true,
+    "dotnet.inlayHints.enableInlayHintsForIndexerParameters": true,
+    "dotnet.inlayHints.enableInlayHintsForObjectCreationParameters": true,
+    "dotnet.inlayHints.enableInlayHintsForOtherParameters": true,
+    "dotnet.inlayHints.suppressInlayHintsForParametersThatDifferOnlyBySuffix": true,
+    "dotnet.inlayHints.suppressInlayHintsForParametersThatMatchMethodIntent": true,
+    "dotnet.inlayHints.suppressInlayHintsForParametersThatMatchArgumentName": true,
+    "csharp.inlayHints.enableInlayHintsForImplicitVariableTypes": true,
+    "csharp.inlayHints.enableInlayHintsForLambdaParameterTypes": true,
+    "csharp.inlayHints.enableInlayHintsForImplicitObjectCreation": true,
+    "javascript.inlayHints.enumMemberValues.enabled": true,
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+    "terminal.integrated.env.windows": {},
+    "terminal.integrated.fontFamily": "Jetbrains mono",
+    // -----------
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
+    "[html]": {
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.formatOnSave": true
+    },
+    "[vue]": {
+        "editor.formatOnSave": true
+    },
+    "editor.linkedEditing": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "workbench.tips.enabled": false,
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "cshtml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "vue",
+        "liquid",
+        "erb",
+        "lang-cfml",
+        "cfml",
+        "HTML (EEx)",
+        "HTML (Eex)",
+        "plist",
+        "razor"
+    ],
+
+    "terminal.integrated.cursorWidth": 2,
+    "extensions.ignoreRecommendations": true,
+    "workbench.colorTheme": "Night Owl Light (No Italics)",
+    "[sql]": {
+        "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+    },
+    "editor.cursorSurroundingLines": 10,
+
+    "diffEditor.ignoreTrimWhitespace": false,
+    "csharp.inlayHints.enableInlayHintsForTypes": true,
+    "editor.minimap.scale": 2,
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.scale": 1,
+    "files.exclude": {
+        "**/.abpstudio": true,
+        "**/.angular": true,
+        "**/bin": true,
+        "**/node_modules": true,
+        "**/obj": true,
+        "**/.vscode": true,
+        "**/.idea": true,
+        "**/.vs": true,
+        "**/.github": true,
+        "**/.config": true,
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "javascript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.implementationsCodeLens.showOnInterfaceMethods": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.referencesCodeLens.showOnAllFunctions": true,
+    "editor.rulers": [80,100,120,140,160,180,200,220,240,260,280,300],
+    "cSpell.language": "en,es",
+    "mssql.enableRichExperiences": true,
+    "workbench.editor.wrapTabs": true,
+    // Agrega más configuraciones para otros tipos de archivo según sea necesario
+
+    // 
+    // "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": false,
+    // "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+
+    // "workbench.tree.renderIndentGuides": "none",
+    // "explorer.openEditors.visible": 1,
+    "explorer.decorations.colors": true,
+    
+    "editor.bracketPairColorization.enabled": false,
+    "editor.guides.indentation": true,
+    // "editor.cursorBlinking": "phase",
+    "editor.renderLineHighlight": "all",
+
+    "editor.glyphMargin": true,
+    // "editor.lineNumbers": "off",
+    "editor.showFoldingControls": "always",
+    "window.commandCenter": false,
+    // "workbench.layoutControl.enabled": false,
+    "window.menuBarVisibility": "compact",
+    "workbench.layoutControl.type": "menu",
+    // "editor.guides.highlightActiveBracketPair": true,
+    // "editor.guides.bracketPairsHorizontal": true,
+    // "workbench.layoutControl.enabled": false,
+
+    "window.title": "${folderPath}${separator}${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}",
+    "window.zoomLevel": 1
+
+    ///////////////////////////////////////////////////
+    // "editor.hideCursorInOverviewRuler": true,
+    // "editor.overviewRulerBorder": false,
+    // "editor.scrollbar.horizontal": "hidden",
+    // "editor.scrollbar.vertical": "hidden",
+    // "color-highlight.markRuler": false,
+}
